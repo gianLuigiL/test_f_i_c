@@ -1,0 +1,93 @@
+div.month_container { 
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;  
+    user-select: none;
+    cursor: pointer;
+    
+    &::after, &:first-of-type::before {
+        width: 2px;
+        height: 130%;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        content: "";
+        background: linear-gradient(to bottom, white, lightgrey 30%);
+    }
+
+    &:first-of-type::before {
+        left: 0;
+    }
+
+    //Uses the inner container because the before and after are already busy
+    &.selected .month::after, &.selecting .month::after {
+        background-color: rgb(99, 190, 1);
+        width: 100%;
+    }
+
+    &.selecting .month::after {
+        background: rgb(55, 221, 55);
+    }
+
+    .name {
+        margin-bottom: 5px;
+        padding-bottom: 3px;
+        padding-left: 3px;
+        box-shadow: 0px 10px 20px #f7f7f7;
+        border-bottom: 1px solid #DEDEDE;
+        font-family: "Avenir Next Medium";
+        font-size: 12px; 
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        text-align: left;
+    }
+
+    div.month {
+        position: relative;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-end;
+        align-items: flex-start;
+        width: 75px;
+        height: 65px;
+        padding: 5px; 
+        border-bottom: 1px solid #DEDEDE;
+
+        //The highlight underneath
+        &::after {
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            bottom: -6px;
+            left: 50%;
+            content: "";
+            transform: translateX(-50%);
+            transition: width 0.5s, background-color 1s;
+        }
+     
+        .percent {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(135deg, #DCF4DB, #E5F9DA);
+            z-index: -1;
+        }
+
+        .documents {
+            font-family: "Avenir Next Medium";
+            font-size: 12px;
+            line-height: 14px;
+            color: #9B9B9B;
+        }
+
+        .value {
+            font-family: "Avenir Next Medium";
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 14px;
+            color: #4A90E2;
+        }
+    }
+}
